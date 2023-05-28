@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>Questionnaire</title>
+    </head>
+    <body>
+        <div id="main_container">
+            <div id="form_container">
+                <form>
+                    <div class="form_div">
+                        <h1>Question</h1>
+                        <input type="text" name="question" />
+                    </div>
+                    <div class="q_div">
+                        <h1>Answer</h1>
+                        <input type="text" name="answers" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <button id="addQuestion">
+            Add Question
+        </button>
+        <button id="addAnswer">
+            Add Answer
+        </button>
+
+        <script>
+            let container = document.querySelector("#form_container");
+            let main_container = document.querySelector("#main_container");
+            let addQuestionButton = document.querySelector('#addQuestion');
+            let addAnswerButton = document.querySelector('#addAnswer');
+            let formCount = 1;
+            let ansCount = 1;
+
+            addQuestionButton.addEventListener('click', addForm);
+            addAnswerButton.addEventListener('click', addAnswer);
+
+            function addForm() {
+                let formDiv = document.createElement('div');
+                formDiv.innerHTML = document.querySelector('.form_div').innerHTML;
+                formDiv.classList.add('form_div');
+
+                main_container.appendChild(formDiv);
+                formCount++;
+            }
+
+            function addAnswer() {
+                let qDiv = document.createElement('div');
+                qDiv.innerHTML = document.querySelector('.q_div').innerHTML;
+                qDiv.classList.add('q_div');
+
+                let formDiv = document.querySelector('.form_div:last-child');
+                formDiv.appendChild(qDiv);
+                ansCount++;
+            }
+        </script>
+    </body>
+</html>
