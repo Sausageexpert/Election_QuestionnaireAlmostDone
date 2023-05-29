@@ -1,12 +1,15 @@
+
+{% load static %}
 <html>
     <head>
         <title>Questionnaire</title>
+        <link rel = 'stylesheet' href = "{% static 'questionnaireStyle.css' %}"/>
     </head>
     <body>
         <div id="main_container">
             <div id="form_container">
                 <form>
-                    <div class="form_div">
+                    <div class="form_div", id = "form_div_main">
                         <h1>Question</h1>
                         <input type="text" name="question" />
                     </div>
@@ -38,7 +41,7 @@
 
             function addForm() {
                 let formDiv = document.createElement('div');
-                formDiv.innerHTML = document.querySelector('.form_div').innerHTML;
+                formDiv.innerHTML = document.querySelector('#form_div_main').innerHTML; // # for id, . for classes
                 formDiv.classList.add('form_div');
 
                 main_container.appendChild(formDiv);
@@ -49,11 +52,22 @@
                 let qDiv = document.createElement('div');
                 qDiv.innerHTML = document.querySelector('.q_div').innerHTML;
                 qDiv.classList.add('q_div');
-
-                let formDiv = document.querySelector('.form_div:last-child');
-                formDiv.appendChild(qDiv);
+                try{
+                    let formDiv = document.querySelector('.form_div:last-child');
+                    formDiv.appendChild(qDiv);
+                }
+                catch(err){
+                    console.log('error encountered, automatically appended answer to question 1')
+                    container.appendChild(qDiv);
+                }
+                
                 ansCount++;
             }
         </script>
     </body>
 </html>
+
+<!--
+    Okkk this is a VERY messed up bunch of code but just for some context, lemme try and explain how it works
+    
+-->
